@@ -1,5 +1,5 @@
 /short-link   /403.html?longurl=https://destination-url.com
-/home         /403.html?longurl=https://facebook.com/aman.dorjoy 302
+/home         https://facebook.com/aman.dorjoy 403
 /cuties https://facebook.com/aman.dorjoy
 /fahad97 /403.html?longurl=https://cutt.ly/h8V3lhf
 /fahad1 https://cutt.ly/h8V3lhf 302
