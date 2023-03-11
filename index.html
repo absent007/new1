@@ -1,29 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Short Link Generator</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script>
-  function redirectTo(destinationUrl) {
-    window.location.href = destinationUrl;
-  }
-</script>
-</head>
-<body>
-	<h1>Short Link Generator</h1>
-	<form action="generate.php" method="post">
-		<label for="long-url">Long URL:</label>
-		<input type="text" id="long-url" name="long-url" required><br><br>
-		<input type="submit" value="Generate Short Link">
-	</form>
-	<div class="container">
-  <form onsubmit="redirectTo(document.getElementById('destinationUrl').value); return false;">
-    <label for="destinationUrl">Enter the destination URL:</label>
-    <input type="text" id="destinationUrl" name="destinationUrl" placeholder="https://example.com">
-    <button type="submit">Go</button>
-  </form>
-</div>
-	<script src="script.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Link Shortener</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+      }
+      
+      h1 {
+        margin: 0;
+      }
+      
+      form {
+        padding: 1rem;
+        text-align: center;
+      }
+      
+      input[type="text"] {
+        padding: 0.5rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+      
+      input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+      
+      .short-link {
+        color: #333;
+        text-decoration: none;
+      }
+      
+      .short-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+	  <script src="script.js"></script>
 
-</body>
-</html>
+  </head>
+  <body>
+    <header>
+      <h1>Deep Link Shortener</h1>
+    </header>
+    
+    <form>
+      <label for="destination-url">Enter your destination URL:</label>
+      <input type="text" id="destination-url" name="destination-url" required>
+      <input type="submit" value="Shorten">
+    </form>
+    
+    <div id="result" style="display: none;">
+      <p>Your short link:</p>
+      <p><a href="#" id="short-link" class="short-link"></a></p>
+    </div>
+    
+    <script>
+      // Define the function to handle the short link click event
+      function handleLinkClick(event) {
+        event.preventDefault(); // prevent the default behavior of the link click
+
+        // Open YouTube app in mobile or the Chrome browser in desktop
+        const youtubeUrl = 'youtube://';
+        const chromeUrl = 'googlechrome://';
+
+        // Open the destination URL in Chrome browser after 3 seconds
+        const destinationUrl = this.href;
+        setTimeout(() => {
+          window.location.href = destinationUrl;
+        }, 3000);
+
+        // Try to open the YouTube app or Chrome browser immediately
+        window.location.href = youtubeUrl;
+        setTimeout(() => {
+          window.location.href = chromeUrl;
+        }, 1000);
+      }
+
+      // Find all the short links on the page
+      const shortLinks = document.querySelectorAll('.short-link');
+
+      // Add click event listener to each short link
+      shortLinks.forEach((link) => {
+        link.addEventListener('click', handleLinkClick);
+      });
+
+      // Define the function to handle the form submit event
+      function handleFormSubmit(event) {
+        event.preventDefault(); // prevent the default behavior of the form submit
+
+        // Get the destination URL entered by the user
+        const destinationUrl = document.querySelector('#destination-url').value;
+
+        // Construct the API endpoint URL
+        const apiUrl = 'https://api-ssl.bitly.com/v4/shorten';
+
+        // Set the request headers
+        const headers = {
+          'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+          'Content-Type': 'application/json'
+        };
+
+       
