@@ -1,3 +1,5 @@
+/*  /redirect.html  403!
+/redirect.html  /destination-url  302
 
 /home              https://facebook.com/aman.dorjoy 200
 /cuties https://facebook.com/aman.dorjoy 403.html 403
