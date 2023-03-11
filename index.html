@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-	<title>Short Link Generator</title>
+    <title>Short Link Generator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script>
+  function redirectTo(destinationUrl) {
+    window.location.href = destinationUrl;
+  }
+</script>
 </head>
 <body>
 	<h1>Short Link Generator</h1>
@@ -12,5 +16,13 @@
 		<input type="text" id="long-url" name="long-url" required><br><br>
 		<input type="submit" value="Generate Short Link">
 	</form>
+	<div class="container">
+  <form onsubmit="redirectTo(document.getElementById('destinationUrl').value); return false;">
+    <label for="destinationUrl">Enter the destination URL:</label>
+    <input type="text" id="destinationUrl" name="destinationUrl" placeholder="https://example.com">
+    <button type="submit">Go</button>
+  </form>
+</div>
+
 </body>
 </html>
