@@ -1,23 +1,5 @@
 /*  /403.html   403!
-/404.html   404
 
-# Custom 403 Error Page
-/403.html
-  Content-Type: text/html
-  Cache-Control: public, max-age=0, must-revalidate
-  Refresh: 3; url=https://example.com/destination-url
-
-<html>
-<head>
-  <title>403 Forbidden</title>
-  <meta http-equiv="refresh" content="3; url=https://example.com/destination-url">
-</head>
-<body>
-  <h1>403 Forbidden</h1>
-  <p>You don't have permission to access this resource.</p>
-  <p>You will be redirected to the destination URL in 3 seconds...</p>
-</body>
-</html>
 
 /home              https://facebook.com/aman.dorjoy 200
 /cuties https://facebook.com/aman.dorjoy 403.html 403
